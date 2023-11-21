@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Airplane extends Model
+class Airport extends Model
 {
+    protected $fillable = ['name', 'iata_code', 'city', 'country_id'];
+
     use HasFactory;
 }

@@ -14,7 +14,7 @@ export default function List({ auth, airplanes}) {
                     <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                         {airplanes.map((airplane, index) => (
                             <li>
-                                Lėktuvo id: {airplane.id}
+                                Airplane id: {airplane.id}
                             </li>
                         ))}
                     </div>

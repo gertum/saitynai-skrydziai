@@ -4,8 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\AirplaneController;
+use App\Http\Controllers\AirportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +41,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/countries', [CountryController::class, 'index'])->name('countries.index');
     Route::get('/airplanes', [AirplaneController::class, 'index'])->name('airplanes.index');
+    Route::get('/airports', [AirportController::class, 'index'])->name('airports.index');
 });
 
 require __DIR__.'/auth.php';
