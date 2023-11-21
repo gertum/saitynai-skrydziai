@@ -10,7 +10,7 @@ class AirplaneController extends Controller
 {
     public function index()
     {
-        $airplanes = Airplane::all(); // Or use any logic to fetch countries
+        $airplanes = Airplane::all();
 
         return Inertia::render('Airplanes/List', [
             'airplanes' => $airplanes,

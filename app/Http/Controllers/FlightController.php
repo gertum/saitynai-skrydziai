@@ -1,19 +1,19 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Airport;
+use App\Models\Flight;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class AirportController extends Controller
+class FlightController extends Controller
 {
     public function index()
     {
-        $airports= Airport::all();
+        $flights = Flight::all();
 
-        return Inertia::render('Airports/List', [
-            'airports' => $airports,
+        return Inertia::render('Flights/List', [
+            'flights' => $flights,
         ]);
     }
 }

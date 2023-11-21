@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\AirplaneController;
 use App\Http\Controllers\AirportController;
+use App\Http\Controllers\FlightController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/countries', [CountryController::class, 'index'])->name('countries.index');
     Route::get('/airplanes', [AirplaneController::class, 'index'])->name('airplanes.index');
     Route::get('/airports', [AirportController::class, 'index'])->name('airports.index');
+    Route::get('/flights', [FlightController::class, 'index'])->name('flights.index');
 });
 
 require __DIR__.'/auth.php';

@@ -5,7 +5,7 @@ export default function List({ auth, airports}) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Profile</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Airports</h2>}
         >
             <Head title="Airports list" />
 
