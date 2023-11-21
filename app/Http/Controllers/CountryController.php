@@ -2,7 +2,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CountryController extends Controller
 {
@@ -10,8 +12,10 @@ class CountryController extends Controller
     {
         $countries = Country::all(); // Or use any logic to fetch countries
 
-        return view('countries.index', compact('countries'));
-    }
+//        return view('countries.index', compact('countries'));
 
-    // Other country-related controller methods
+        return Inertia::render('Countries/List', [
+            'countries' => $countries,
+        ]);
+    }
 }
