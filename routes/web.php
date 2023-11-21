@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\AirplaneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/countries', [CountryController::class, 'index'])->name('countries.index');
+    Route::get('/airplanes', [AirplaneController::class, 'index'])->name('airplanes.index');
 });
 
 require __DIR__.'/auth.php';
