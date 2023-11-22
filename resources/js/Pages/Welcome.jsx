@@ -1,12 +1,43 @@
 import {Link, Head} from '@inertiajs/react';
-
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 export default function Welcome({auth, laravelVersion, phpVersion}) {
+
+    const [flights, setFlights] = useState([]);
+    const [loadingFlights, setLoadingFlights] = useState(false);
+    const [errorFlights, setErrorFlights] = useState('');
+
+    useEffect(() => {
+        const fetchFlights = async () => {
+            try {
+                setLoadingFlights(true);
+                const flightsResponse = await axios.get('/api/flights');
+                setFlights(flightsResponse.data);
+            } catch (error) {
+                setErrorFlights(error.message);
+            } finally {
+                setLoadingFlights(false);
+            }
+        };
+
+        fetchFlights();
+    }, []);
+
+
     return (
         <>
             <Head title="Welcome"/>
             <div
                 className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
                 <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">
+                    <div>
+                    <Link
+                        href={route('login')}
+                        className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    >
+                        Shopping cart
+                    </Link>
+                    </div>
                     {auth.user ? (
                         <Link
                             href={route('dashboard')}
@@ -48,10 +79,41 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                         </svg>
                     </div>
 
-                    <h1>Laba diena</h1>
-                    <h1>Su vištiena ir taip toliau ir dar toliau</h1>
+                    {/*<h1>Laba diena</h1>*/}
+                    {/*<h1>Su vištiena ir taip toliau ir dar toliau</h1>*/}
+
+                    <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+                        <div className="p-4 sm:p-8 bg-gray-100 shadow sm:rounded-lg">
+                            {loadingFlights ? (
+                                <p>Loading flights...</p>
+                            ) : errorFlights ? (
+                                <p>Error fetching flights: {errorFlights}</p>
+                            ) : (
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Flight ID</th>
+                                        <th>Departure Airport ID</th>
+                                        <th>Arrival Airport ID</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {flights.map((flight, index) => (
+                                        <tr key={index}>
+                                            <td>{flight.id}</td>
+                                            <td>{flight.departure_airport_id}</td>
+                                            <td>{flight.arrival_airport_id}</td>
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
 
 
             <style>{`

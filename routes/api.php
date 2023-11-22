@@ -20,5 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Route::middleware('auth')->group(function () {
-    Route::get('/flight', [FlightsController::class, 'search']);
+    Route::get('/flights', [FlightsController::class, 'search']);
 //});
+//Route::get('/tickets', 'TicketApiController@index'); // API endpoint to fetch tickets data
+Route::post('/cart', 'CartApiController@store'); // API endpoint to add tickets to the cart

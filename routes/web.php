@@ -44,6 +44,14 @@ Route::middleware('auth')->group(function () {
 //    Route::get('/airplanes', [AirplaneController::class, 'index'])->name('airplanes.index');
 //    Route::get('/airports', [AirportController::class, 'index'])->name('airports.index');
 //    Route::get('/flights', [FlightController::class, 'index'])->name('flights.index');
+
+//    Route::get('/flights', function () {
+//        return Inertia::render('Flights/List');
+//    });
+
+//    Route::get('/tickets', 'TicketController@index')->name('tickets.index'); // Display available tickets
+    Route::get('/cart', 'CartController@show')->name('cart.show'); // View the shopping cart
+
 });
 
 require __DIR__.'/auth.php';

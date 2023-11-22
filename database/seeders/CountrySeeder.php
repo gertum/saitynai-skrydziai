@@ -13,11 +13,12 @@ class CountrySeeder extends Seeder
      */
     public function run(): void
     {
-        $countries = [
-            ['name' => 'Country A', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Country B', 'created_at' => now(), 'updated_at' => now()],
-        ];
-
-        DB::table('countries')->insert($countries);
+        \App\Models\Country::factory()->count(10)->create();
+//        $countries = [
+//            ['name' => 'Country A', 'created_at' => now(), 'updated_at' => now()],
+//            ['name' => 'Country B', 'created_at' => now(), 'updated_at' => now()],
+//        ];
+//
+//        DB::table('countries')->insert($countries);
     }
 }
