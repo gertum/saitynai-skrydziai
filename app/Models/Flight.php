@@ -16,6 +16,10 @@ class Flight extends Model
         'real_departure_time',
         'real_arrival_time',
     ];
+    public function airplane()
+    {
+        return $this->belongsTo(Airplane::class, 'airplane_id');
+    }
 
     use HasFactory;
 
