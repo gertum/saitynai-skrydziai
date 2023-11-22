@@ -98,6 +98,10 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
 
                     {/*<h1>Laba diena</h1>*/}
                     {/*<h1>Su vištiena ir taip toliau ir dar toliau</h1>*/}
+                    <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+                        <div className="p-4 sm:p-8 bg-gray-100 shadow sm:rounded-lg">
+                        </div>
+                    </div>
 
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                         <div className="p-4 sm:p-8 bg-gray-100 shadow sm:rounded-lg">

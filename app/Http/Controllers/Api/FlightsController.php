@@ -10,9 +10,12 @@ class FlightsController extends Controller
 {
     public function search(Request $request)
     {
-        $departure_id = $request->get('departure_id');
+        $departureName = $request->get('departure_name');
+        $arrivalName = $request->get('arrival_name');
         return Flight::query()
-            ->departureId($departure_id)
+            ->with(['departure', 'arrival', 'departure.country', 'arrival.country'])
+            ->departureName($departureName)
+            ->arrivalName($arrivalName)
             ->get();
 //
 //        return Flight::all();
