@@ -14,5 +14,10 @@ class Country extends Model
 //        return $this->hasMany(Airport::class);
 //    }
 
+    public function airports()
+    {
+        return $this->hasMany(Airport::class, 'airports_country_id_foreign', 'id');
+    }
+
     use HasFactory;
 }

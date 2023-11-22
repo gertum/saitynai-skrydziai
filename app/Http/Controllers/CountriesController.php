@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class CountryController extends Controller
+class CountriesController extends Controller
 {
     public function index()
     {

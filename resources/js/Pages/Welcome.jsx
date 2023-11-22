@@ -1,3 +1,4 @@
+
 import {Link, Head} from '@inertiajs/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -12,7 +13,23 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
             try {
                 setLoadingFlights(true);
                 const flightsResponse = await axios.get('/api/flights');
-                setFlights(flightsResponse.data);
+                // Modify the flight data to include airport names and country details
+                const modifiedFlights = await Promise.all(
+                    flightsResponse.data.map(async (flight) => {
+                        const departureAirport = await axios.get(`/api/airport/${flight.departure_airport_id}`);
+                        const departureCountry = await axios.get(`/api/country/${departureAirport.data.country_id}`);
+                        const arrivalAirport = await axios.get(`/api/airport/${flight.arrival_airport_id}`);
+                        // const arrivalCountry = await axios.get(`/api/country/${aAirport.data.country_id}`);
+                        return {
+                            ...flight,
+                            departure_airport: departureAirport.data.name,
+                            departure_country: departureAirport.data.country_name,
+                            arrival_airport: arrivalAirport.data.name,
+                            arrival_country: arrivalAirport.data.country_name,
+                        };
+                    })
+                );
+                setFlights(modifiedFlights);
             } catch (error) {
                 setErrorFlights(error.message);
             } finally {
@@ -31,12 +48,12 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                 className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
                 <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">
                     <div>
-                    <Link
-                        href={route('login')}
-                        className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                    >
-                        Shopping cart
-                    </Link>
+                        <Link
+                            href={route('login')}
+                            className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                        >
+                            Shopping cart
+                        </Link>
                     </div>
                     {auth.user ? (
                         <Link
@@ -101,8 +118,8 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                                     {flights.map((flight, index) => (
                                         <tr key={index}>
                                             <td>{flight.id}</td>
-                                            <td>{flight.departure_airport_id}</td>
-                                            <td>{flight.arrival_airport_id}</td>
+                                            <td>{flight.departure_airport}, {flight.departure_country}</td>
+                                            <td>{flight.arrival_airport}, {flight.arrival_country}</td>
                                         </tr>
                                     ))}
                                     </tbody>
