@@ -2,27 +2,25 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class AirplaneSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         DB::table('airplanes')->insert([
             [
+                'seats' => 150,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'seats' => 200,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            // Add more airplane records as needed
         ]);
     }
 }
+
