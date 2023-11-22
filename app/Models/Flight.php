@@ -18,4 +18,14 @@ class Flight extends Model
     ];
 
     use HasFactory;
+
+    // example only
+    public function scopeDepartureId($builder, $departureId)
+    {
+        if ( empty($departureId)) {
+            return $builder;
+        }
+        return $builder->where('departure_airport_id', '=', $departureId );
+    }
+
 }
