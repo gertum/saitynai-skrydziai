@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\Api\AirportsController;
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CountriesController;
+use App\Http\Controllers\Api\FlightsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\Api\FlightsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/flights', [FlightsController::class, 'search']);
 Route::get('/airport/{id}', [AirportsController::class, 'getAirportById']);
 Route::get('/country/{id}', [CountriesController::class, 'getCountryById']);
-
+Route::get('/cart', [CartController::class, 'show']);
 //});
 //Route::get('/tickets', 'TicketApiController@index'); // API endpoint to fetch tickets data
 Route::post('/cart', 'CartApiController@store'); // API endpoint to add tickets to the cart

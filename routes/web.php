@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,8 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome'); // Name the route outside of the Inertia::render() call
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -50,7 +52,7 @@ Route::middleware('auth')->group(function () {
 //    });
 
 //    Route::get('/tickets', 'TicketController@index')->name('tickets.index'); // Display available tickets
-    Route::get('/cart', 'CartController@show')->name('cart.show'); // View the shopping cart
+    Route::get('/cart', [CartController::class, 'show'])->name('cart');
 
 });
 
