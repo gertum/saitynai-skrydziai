@@ -1,16 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\CartWebController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-use App\Http\Controllers\CountriesController;
-use App\Http\Controllers\AirplaneController;
-use App\Http\Controllers\AirportController;
-use App\Http\Controllers\FlightController;
-use App\Http\Controllers\CartWebController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +31,7 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -53,7 +49,6 @@ Route::middleware('auth')->group(function () {
 
 //    Route::get('/tickets', 'TicketController@index')->name('tickets.index'); // Display available tickets
     Route::get('/cart', [CartWebController::class, 'index'])->name('cart');
-
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

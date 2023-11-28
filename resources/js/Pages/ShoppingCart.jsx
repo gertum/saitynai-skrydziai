@@ -1,6 +1,6 @@
-import { Link, Head } from '@inertiajs/react';
+import {Link, Head} from '@inertiajs/react';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
 export default function ShoppingCart() {
     const [cartItems, setCartItems] = useState([]);
@@ -25,8 +25,13 @@ export default function ShoppingCart() {
 
     return (
         <>
-            <Head title="Shopping Cart" />
-            {/* Your layout structure */}
+        {/*<AuthenticatedLayout*/}
+        {/*    user={auth.user}*/}
+        {/*    header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}*/}
+        {/*>*/}
+            <Head title="Shopping Cart"/>
+
+
             <div className="max-w-7xl mx-auto p-6 lg:p-8">
                 <div className="p-4 sm:p-8 bg-gray-200 mx-auto shadow sm:rounded-lg custom-margins text-center">
                     <h1 className="mb-4">Shopping Cart</h1>
@@ -39,8 +44,13 @@ export default function ShoppingCart() {
                         <table>
                             <thead>
                             <tr>
-                                <th>Item ID</th>
-                                <th>Item Name</th>
+                                <th>Ticket ID</th>
+                                <th>Flight ID</th>
+                                <th>Departure airport</th>
+                                <th>Arrival airport</th>
+                                {/*time below*/}
+                                <th>Departure</th>
+                                <th>Arrival</th>
                                 {/* Add more columns for details */}
                             </tr>
                             </thead>
@@ -48,8 +58,7 @@ export default function ShoppingCart() {
                             {cartItems.map((item, index) => (
                                 <tr key={index}>
                                     <td>{item.id}</td>
-                                    <td>{item.name}</td>
-                                    {/* Render more item details */}
+                                    <td>{item.departure}</td>
                                 </tr>
                             ))}
                             </tbody>
@@ -57,6 +66,8 @@ export default function ShoppingCart() {
                     )}
                 </div>
             </div>
+        {/*</AuthenticatedLayout>*/}
         </>
+
     );
 }

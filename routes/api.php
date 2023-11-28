@@ -22,9 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::middleware('auth')->group(function () {
-    Route::get('/cart', [CartController::class, 'cart']);
-//});
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'cart'])->name('api_cart');
+});
 
 //Route::get('/cart', [CartController::class, 'show']);
 
