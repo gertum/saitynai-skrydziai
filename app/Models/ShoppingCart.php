@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use PHPUnit\Framework\Attributes\Ticket;
 
 class ShoppingCart extends Model
 {
@@ -16,6 +15,8 @@ class ShoppingCart extends Model
 
     public function tickets()
     {
-        return $this->belongsToMany(Ticket::class)->withPivot()->withTimestamps();
+        return $this->belongsToMany(Ticket::class)
+            ->withPivot('shopping_cart_id', 'ticket_id', 'created_at', 'updated_at')
+            ->withTimestamps();
     }
 }

@@ -18,6 +18,6 @@ class Ticket extends Model
     }
     public function tickets()
     {
-        return $this->belongsToMany(Ticket::class)->withPivot()->withTimestamps();
+        return $this->belongsToMany(Ticket::class)->withTimestamps();
     }
 }

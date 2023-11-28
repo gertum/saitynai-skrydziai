@@ -11,22 +11,24 @@ class CartController extends Controller
 {
     public function show()
     {
-        // Get the authenticated user
         $user = auth()->user();
 
-        // Retrieve the shopping cart for the user
+        if (!$user) {
+            // If the user is not authenticated, handle accordingly
+            return redirect()->route('login')->with('error', 'Please log in to view your cart.');
+        }
+
         $shoppingCart = $user->shoppingCart;
 
-        // Check if the user has a shopping cart
         if ($shoppingCart) {
-            // Load tickets associated with the shopping cart
+
             $tickets = $shoppingCart->tickets;
 
-            // Pass the shopping cart and tickets data to the view
+            // Display the cart and associated tickets
             return view('cart.show', compact('user', 'tickets'));
         }
 
-        // If the user doesn't have a shopping cart, handle accordingly
+        // Redirect to welcome page if no shopping cart exists for the user
         return redirect()->route('welcome')->with('error', 'No shopping cart found for this user.');
     }
 
