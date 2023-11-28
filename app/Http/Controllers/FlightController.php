@@ -10,10 +10,6 @@ class FlightController extends Controller
 {
     public function index()
     {
-        $flights = Flight::all();
-
-        return Inertia::render('Flights/List', [
-            'flights' => $flights,
-        ]);
+        return Inertia::render('Flights/List');
     }
 }

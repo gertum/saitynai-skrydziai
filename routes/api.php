@@ -22,11 +22,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'cart']);
+});
+
+//Route::get('/cart', [CartController::class, 'show']);
+
 Route::get('/flights', [FlightsController::class, 'search']);
 Route::get('/airport/{id}', [AirportsController::class, 'getAirportById']);
 Route::get('/country/{id}', [CountriesController::class, 'getCountryById']);
-Route::get('/cart', [CartController::class, 'show']);
-//});
+
 //Route::get('/tickets', 'TicketApiController@index'); // API endpoint to fetch tickets data
-Route::post('/cart', 'CartApiController@store'); // API endpoint to add tickets to the cart
+//Route::post('/cart', 'CartApiController@store'); // API endpoint to add tickets to the cart

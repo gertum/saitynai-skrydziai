@@ -10,7 +10,7 @@ use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\AirplaneController;
 use App\Http\Controllers\AirportController;
 use App\Http\Controllers\FlightController;
-
+use App\Http\Controllers\CartWebController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
 //    });
 
 //    Route::get('/tickets', 'TicketController@index')->name('tickets.index'); // Display available tickets
-    Route::get('/cart', [CartController::class, 'show'])->name('cart');
+    Route::get('/cart', [CartWebController::class, 'index'])->name('cart');
 
 });
 

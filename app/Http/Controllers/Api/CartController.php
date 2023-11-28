@@ -9,27 +9,13 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function show()
+    public function cart(Request $request)
     {
-        $user = auth()->user();
+      // ShoppingCart::
 
-        if (!$user) {
-            // If the user is not authenticated, handle accordingly
-            return redirect()->route('login')->with('error', 'Please log in to view your cart.');
-        }
-
-        $shoppingCart = $user->shoppingCart;
-
-        if ($shoppingCart) {
-
-            $tickets = $shoppingCart->tickets;
-
-            // Display the cart and associated tickets
-            return view('cart.show', compact('user', 'tickets'));
-        }
-
-        // Redirect to welcome page if no shopping cart exists for the user
-        return redirect()->route('welcome')->with('error', 'No shopping cart found for this user.');
+        return [
+            ['id'=>1423, 'name'=>'Pirmas']
+        ];
     }
 
 
