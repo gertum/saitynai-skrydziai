@@ -17,6 +17,7 @@ class ShoppingCart extends Model
     {
         return $this->belongsToMany(Ticket::class)
             ->withPivot('shopping_cart_id', 'ticket_id', 'created_at', 'updated_at')
+//            ->with(Flight::)
             ->withTimestamps();
     }
 }
