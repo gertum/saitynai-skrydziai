@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('shopping_cart_id');
             $table->unsignedBigInteger('ticket_id');
-            $table->integer('quantity')->default(1); // Adjust according to your requirements
             $table->timestamps();
 
             $table->foreign('shopping_cart_id')->references('id')->on('shopping_carts')->onDelete('cascade');

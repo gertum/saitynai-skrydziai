@@ -13,9 +13,22 @@ class CartController extends Controller
     {
       // ShoppingCart::
 
-        return [
-            ['id'=>1423, 'name'=>'Pirmas']
-        ];
+//        $userId = $request->user()->id;
+        $userId= 1;
+
+        $cart = ShoppingCart::where('user_id', $userId)->with('tickets')->first();
+
+        if ($cart) {
+            $tickets = $cart->tickets;
+
+            return $tickets;
+        } else {
+            return redirect()->back()->with('error', 'Cart not found.');
+        }
+
+//        return [
+//            ['id'=>1423, 'name'=>'Pirmas']
+//        ];
     }
 
 

@@ -12,11 +12,13 @@ class FlightsController extends Controller
     {
         $departureName = $request->get('departure_name');
         $arrivalName = $request->get('arrival_name');
-        return Flight::query()
+        $flights = Flight::query()
             ->with(['departure', 'arrival', 'departure.country', 'arrival.country'])
             ->departureName($departureName)
             ->arrivalName($arrivalName)
             ->get();
+
+        return $flights;
 //
 //        return Flight::all();
     }
