@@ -13,8 +13,8 @@ class CartController extends Controller
     {
       // ShoppingCart::
 
-//        $userId = $request->user()->id;
-        $userId= 1;
+        $userId = $request->user()->id;
+//        $userId= 1;
 
         $cart = ShoppingCart::where('user_id', $userId)->with('tickets')->first();
 
@@ -46,6 +46,14 @@ class CartController extends Controller
         // Return the updated cart or a success response
         return response()->json(['message' => 'Item added to cart']);
     }
+    public function add(Request $request)
+    {
 
+    }
+
+    public function remove(Request $request)
+    {
+
+    }
     // Other methods to update or delete items from the cart as needed
 }

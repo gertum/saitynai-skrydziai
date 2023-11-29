@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Flight extends Model
 {
@@ -51,6 +52,12 @@ class Flight extends Model
     {
         return $this->belongsTo(Airport::class, 'arrival_airport_id');
     }
+
+    public function tickets() : HasMany {
+        return $this->hasMany(Ticket::class, 'flight_id');
+    }
+
+
 
     public function scopeDepartureName(Builder $builder, $departureName)
     {

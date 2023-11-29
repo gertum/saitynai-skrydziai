@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Flight;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
 class FlightsController extends Controller
@@ -21,5 +22,12 @@ class FlightsController extends Controller
         return $flights;
 //
 //        return Flight::all();
+    }
+
+    public function getTickets($flightId)
+    {
+        return Ticket::query()
+            ->flight($flightId)
+            ->get();
     }
 }

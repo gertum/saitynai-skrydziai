@@ -32,5 +32,8 @@ Route::get('/flights', [FlightsController::class, 'search']);
 Route::get('/airport/{id}', [AirportsController::class, 'getAirportById']);
 Route::get('/country/{id}', [CountriesController::class, 'getCountryById']);
 
+Route::get('/flights/{flightId}/tickets', [FlightsController::class, 'getTickets']);
+
+
 //Route::get('/tickets', 'TicketApiController@index'); // API endpoint to fetch tickets data
 //Route::post('/cart', 'CartApiController@store'); // API endpoint to add tickets to the cart
