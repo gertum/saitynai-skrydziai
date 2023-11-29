@@ -2,7 +2,7 @@ import {Link, Head} from '@inertiajs/react';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 
-export default function Welcome({auth, laravelVersion, phpVersion}) {
+export default function Welcome({auth}) {
 
     const [flights, setFlights] = useState([]);
     const [loadingFlights, setLoadingFlights] = useState(false);
@@ -25,6 +25,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
 
         fetchFlights();
     }, []);
+
 
 
     return (
@@ -133,7 +134,9 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                                             )}
                                         </td>
                                         <td>
-                                            <a href="#" className="text-red-500">Add ticket to cart</a>
+                                            <a href="#" className="text-red-500" onClick={() => handleAddTicketClick(flightId)}>
+                                                Add ticket to cart
+                                            </a>
                                         </td>
                                     </tr>
                                 ))}
