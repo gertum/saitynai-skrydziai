@@ -10,7 +10,6 @@ use Illuminate\Http\Response;
 
 class TicketController
 {
-    //TODO
     public function create(Request $request)
     {
         $validatedData = $request->validate([
@@ -21,7 +20,6 @@ class TicketController
         return Ticket::query()->create($validatedData);
 
     }
-    //TODO
     public function read($id)
     {
         $ticket = Ticket::query()->find($id);
@@ -33,16 +31,20 @@ class TicketController
         return $ticket;
     }
 
-    //TODO
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'price' => 'numeric',
+            'flight_id' => 'exists:flights,id',
+        ]);
+
         $ticket = Ticket::query()->find($id);
 
         if ( $ticket == null ) {
             return new Response(sprintf('Ticket not found by id %s', $id), 404);
         }
 
-        $ticket->update($request->all());
+        $ticket->update($validatedData);
 
         return $ticket;
     }
@@ -60,21 +62,15 @@ class TicketController
         return $ticket;
     }
 
-    //TODO
     public function search(Request $request)
-    {
-//        $departureName = $request->get('departure_name');
-//        $arrivalName = $request->get('arrival_name');
-//        $limit = $request->get('limit', 10);
-//        $offset = $request->get('offset', 0);
-//        $flights = Flight::query()
-//            ->with(['departure', 'arrival', 'departure.country', 'arrival.country'])
-//            ->offset($offset)
-//            ->limit($limit)
-//            ->departureName($departureName)
-//            ->arrivalName($arrivalName)
-//            ->get();
+{
+    $limit = $request->get('limit', 10);
+    $offset = $request->get('offset', 0);
+    $tickets= Ticket::query()
+        ->offset($offset)
+        ->limit($limit)
+        ->get();
 //
-//        return $flights;
-    }
+    return $tickets;
+}
 }

@@ -54,8 +54,14 @@ class AirportController extends Controller
         if ($airport == null) {
             return new Response(sprintf('Airport not found by id [%s]', $id), 404);
         }
+        $validatedData = $request->validate([
+            'name' => 'string',
+            'iata_code' => 'string',
+            'city' => 'string',
+            'country_id' => 'numeric',
+        ]);
 
-        $airport->update($request->all());
+        $airport->update($validatedData);
 
         return $airport;
     }
@@ -71,7 +77,7 @@ class AirportController extends Controller
         $flightsDeparturing = Flight::query()->where('departure_airport_id', $id)->get();
         $flightsArriving = Flight::query()->where('arrival_airport_id', $id)->get();
 
-        $fligthsKeys = $flightsDeparturing->merge($flightsArriving)->map(fn(Flight $f)=>$f->getKey());
+        $fligthsKeys = $flightsDeparturing->merge($flightsArriving)->map(fn(Flight $f) => $f->getKey());
 
         Ticket::query()->whereIn('flight_id', $fligthsKeys)->delete();
         Flight::query()->whereIn('id', $fligthsKeys)->delete();
@@ -81,21 +87,15 @@ class AirportController extends Controller
         return $airport;
     }
 
-    //TODO
     public function search(Request $request)
     {
-//        $departureName = $request->get('departure_name');
-//        $arrivalName = $request->get('arrival_name');
-//        $limit = $request->get('limit', 10);
-//        $offset = $request->get('offset', 0);
-//        $flights = Flight::query()
-//            ->with(['departure', 'arrival', 'departure.country', 'arrival.country'])
-//            ->offset($offset)
-//            ->limit($limit)
-//            ->departureName($departureName)
-//            ->arrivalName($arrivalName)
-//            ->get();
+        $limit = $request->get('limit', 10);
+        $offset = $request->get('offset', 0);
+        $tickets = Ticket::query()
+            ->offset($offset)
+            ->limit($limit)
+            ->get();
 //
-//        return $flights;
+        return $tickets;
     }
 }

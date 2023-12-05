@@ -68,14 +68,25 @@ class FlightController extends Controller
     //TODO
     public function update(Request $request, $flightId)
     {
+
+
         $flight = Flight::query()->find($flightId);
 
         if ( $flight == null ) {
             return new Response(sprintf('Flight not found by id %s', $flightId), 404);
         }
 
+        $validatedData = $request->validate([
+            'real_departure_time' => 'date',
+            'real_arrival_time' => 'date',
+            'estimated_departure_time' => 'date',
+            'estimated_arrival_time' => 'date',
+            'airplane_id' => 'numeric',
+            'arrival_airport_id' => 'numeric',
+            'departure_airport_id' => 'numeric',
+        ]);
 
-        $flight->update($request->all());
+        $flight->update($validatedData);
 
         return $flight;
     }
