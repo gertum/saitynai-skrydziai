@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Airport;
 use App\Models\Flight;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
@@ -12,25 +13,14 @@ class TicketController
     //TODO
     public function create(Request $request)
     {
-//        // Validate the incoming request data
-//        $validatedData = $request->validate([
-//            'departure_name' => 'required',
-//            'arrival_name' => 'required',
-//            // Add more validation rules for other flight attributes if needed
-//        ]);
+        $validatedData = $request->validate([
+            'price' => 'required|numeric',
+            'flight_id' => 'required|exists:flights,id',
+        ]);
 
-        $ticket = new Ticket();
-//        $flight->departure_name = $validatedData['departure_name'];
-//        $flight->arrival_name = $validatedData['arrival_name'];
-        // Set other attributes here...
+        return Ticket::query()->create($validatedData);
 
-        // Save the new flight
-        $ticket->save();
-
-        // Optionally, you can return the created flight or a success message
-        return ['message' => 'Ticket created successfully', 'ticket' => $ticket];
     }
-
     //TODO
     public function read($id)
     {
@@ -68,5 +58,23 @@ class TicketController
         $ticket->delete();
 
         return $ticket;
+    }
+
+    //TODO
+    public function search(Request $request)
+    {
+//        $departureName = $request->get('departure_name');
+//        $arrivalName = $request->get('arrival_name');
+//        $limit = $request->get('limit', 10);
+//        $offset = $request->get('offset', 0);
+//        $flights = Flight::query()
+//            ->with(['departure', 'arrival', 'departure.country', 'arrival.country'])
+//            ->offset($offset)
+//            ->limit($limit)
+//            ->departureName($departureName)
+//            ->arrivalName($arrivalName)
+//            ->get();
+//
+//        return $flights;
     }
 }

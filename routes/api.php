@@ -47,6 +47,7 @@ Route::delete('/ticket/{id}', [TicketController::class, 'delete']);
 Route::get('/airport/{id}', [AirportController::class, 'read']);
 Route::put('/airport/{id}', [AirportController::class, 'update']);
 Route::delete('/airport/{id}', [AirportController::class, 'delete']);
+Route::post('/airport', [AirportController::class, 'create']);
 
 
 Route::get('/country/{id}', [CountryController::class, 'getCountryById']);

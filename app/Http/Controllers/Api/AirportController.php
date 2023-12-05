@@ -26,10 +26,16 @@ class AirportController extends Controller
     //TODO
     public function create(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'iata_code' => 'required|string',
+            'city' => 'required|string',
+            'country_id' => 'required|numeric',
+        ]);
 
+        return Airport::query()->create($validatedData);
     }
 
-    //TODO
     public function read($id)
     {
         $airport = Airport::query()->find($id);
@@ -41,7 +47,6 @@ class AirportController extends Controller
         return $airport;
     }
 
-    //TODO
     public function update(Request $request, $id)
     {
         $airport = Airport::query()->find($id);
@@ -55,7 +60,6 @@ class AirportController extends Controller
         return $airport;
     }
 
-    //TODO
     public function delete(Request $request, $id)
     {
         $airport = Airport::query()->find($id);
@@ -75,5 +79,23 @@ class AirportController extends Controller
         $airport->delete();
 
         return $airport;
+    }
+
+    //TODO
+    public function search(Request $request)
+    {
+//        $departureName = $request->get('departure_name');
+//        $arrivalName = $request->get('arrival_name');
+//        $limit = $request->get('limit', 10);
+//        $offset = $request->get('offset', 0);
+//        $flights = Flight::query()
+//            ->with(['departure', 'arrival', 'departure.country', 'arrival.country'])
+//            ->offset($offset)
+//            ->limit($limit)
+//            ->departureName($departureName)
+//            ->arrivalName($arrivalName)
+//            ->get();
+//
+//        return $flights;
     }
 }

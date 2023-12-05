@@ -15,15 +15,17 @@ class FlightController extends Controller
     {
         $departureName = $request->get('departure_name');
         $arrivalName = $request->get('arrival_name');
+        $limit = $request->get('limit', 10);
+        $offset = $request->get('offset', 0);
         $flights = Flight::query()
             ->with(['departure', 'arrival', 'departure.country', 'arrival.country'])
+            ->offset($offset)
+            ->limit($limit)
             ->departureName($departureName)
             ->arrivalName($arrivalName)
             ->get();
 
         return $flights;
-//
-//        return Flight::all();
     }
 
     public function getTickets($flightId)
@@ -36,23 +38,19 @@ class FlightController extends Controller
     //TODO
     public function create(Request $request)
     {
-        // Validate the incoming request data
         $validatedData = $request->validate([
-            'departure_name' => 'required',
-            'arrival_name' => 'required',
-            // Add more validation rules for other flight attributes if needed
+            'real_departure_time' => 'date',
+            'real_arrival_time' => 'date',
+            'estimated_departure_time' => 'required|date',
+            'estimated_arrival_time' => 'required|date',
+            'airplane_id' => 'required|numeric',
+            'arrival_airport_id' => 'required|numeric',
+            'departure_airport_id' => 'required|numeric',
         ]);
 
-        $flight = new Flight();
-        $flight->departure_name = $validatedData['departure_name'];
-        $flight->arrival_name = $validatedData['arrival_name'];
-        // Set other attributes here...
 
-        // Save the new flight
-        $flight->save();
+        return Flight::query()->create($validatedData);
 
-        // Optionally, you can return the created flight or a success message
-        return ['message' => 'Flight created successfully', 'flight' => $flight];
     }
 
     //TODO
