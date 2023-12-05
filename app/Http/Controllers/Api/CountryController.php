@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Country;
 use Illuminate\Http\Request;
 
-class CountriesController extends Controller
+class CountryController extends Controller
 {
     public function getCountryById(Request $request)
     {

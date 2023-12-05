@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\AirportsController;
+use App\Http\Controllers\Api\AirportController;
 use App\Http\Controllers\Api\CartController;
-use App\Http\Controllers\Api\CountriesController;
-use App\Http\Controllers\Api\FlightsController;
+use App\Http\Controllers\Api\CountryController;
+use App\Http\Controllers\Api\FlightController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,15 +29,18 @@ Route::middleware('auth')->group(function () {
 
 //Route::get('/cart', [CartController::class, 'show']);
 
-Route::get('/flight', [FlightsController::class, 'search']);
-Route::get('/flight/{flightId}', [FlightsController::class, 'read']);
-Route::post('/flight', [FlightsController::class, 'create']);
-Route::put('/flight/{flightId}', [FlightsController::class, 'update']);
-Route::delete('/flight/{flightId}', [FlightsController::class, 'delete']);
-Route::get('/flight/{flightId}/tickets', [FlightsController::class, 'getTickets']);
+Route::get('/flight', [FlightController::class, 'search']);
+Route::get('/flight/{flightId}', [FlightController::class, 'read']);
+Route::post('/flight', [FlightController::class, 'create']);
+Route::put('/flight/{flightId}', [FlightController::class, 'update']);
+Route::delete('/flight/{flightId}', [FlightController::class, 'delete']);
+Route::get('/flight/{flightId}/tickets', [FlightController::class, 'getTickets']);
 
-Route::get('/airport/{id}', [AirportsController::class, 'getAirportById']);
-Route::get('/country/{id}', [CountriesController::class, 'getCountryById']);
+
+//Route::get('/ticket', [Tick::class, 'getTickets']);
+
+Route::get('/airport/{id}', [AirportController::class, 'getAirportById']);
+Route::get('/country/{id}', [CountryController::class, 'getCountryById']);
 
 
 

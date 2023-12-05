@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Airport;
+use App\Models\Flight;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
-class AirportsController extends Controller
+class AirportController extends Controller
 {
     public function getAirportById(Request $request)
     {
@@ -18,5 +20,29 @@ class AirportsController extends Controller
         }
 
         return response()->json($airport);
+    }
+
+    //TODO
+    public function create(Request $request)
+    {
+
+    }
+
+    //TODO
+    public function read($flightId)
+    {
+
+    }
+
+    //TODO
+    public function update(Request $request, $flightId)
+    {
+
+    }
+
+    //TODO
+    public function delete(Request $request, $flightId)
+    {
+
     }
 }

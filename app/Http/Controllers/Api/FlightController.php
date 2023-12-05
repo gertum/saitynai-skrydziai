@@ -8,7 +8,7 @@ use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class FlightsController extends Controller
+class FlightController extends Controller
 {
 
     public function search(Request $request)

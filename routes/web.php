@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-//    Route::get('/countries', [CountriesController::class, 'index'])->name('countries.index');
+//    Route::get('/countries', [CountryController::class, 'index'])->name('countries.index');
 //    Route::get('/airplanes', [AirplaneController::class, 'index'])->name('airplanes.index');
 //    Route::get('/airports', [AirportController::class, 'index'])->name('airports.index');
 //    Route::get('/flights', [FlightController::class, 'index'])->name('flights.index');
