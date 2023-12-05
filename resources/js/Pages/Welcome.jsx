@@ -15,6 +15,9 @@ export default function Welcome({auth}) {
 
                 const flightsResponse = await axios.get('/api/flights');
                 // const flightsResponse = await axios.get('/api/flights', {params: {arrival_name:'Airport'}});
+
+
+                console.log('Cart API Response:', cartResponse.data);
                 setFlights(flightsResponse.data);
             } catch (error) {
                 setErrorFlights(error.message);
@@ -26,7 +29,19 @@ export default function Welcome({auth}) {
         fetchFlights();
     }, []);
 
-
+    // //TODO
+    // const handleAddTicketClick = async (flightId) => {
+    //     //simple add
+    //
+    //     try {
+    //         await axios.get(`/api/cart/add/${flightId}`);
+    //         console.log('Ticket added to cart'); // Optional success message
+    //     } catch (error) {
+    //         console.error('Error adding ticket to cart:', error);
+    //         // Handle errors as needed
+    //         //TODO
+    //     }
+    // };
 
     return (
         <>
@@ -34,7 +49,6 @@ export default function Welcome({auth}) {
             <div
                 className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
                 <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">
-
                     {auth.user ? (
                         <Link
                             href={route('dashboard')}

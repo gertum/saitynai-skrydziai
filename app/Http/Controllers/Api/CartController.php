@@ -11,10 +11,7 @@ class CartController extends Controller
 {
     public function cart(Request $request)
     {
-      // ShoppingCart::
-
         $userId = $request->user()->id;
-//        $userId= 1;
 
         $cart = ShoppingCart::where('user_id', $userId)->with('tickets')->first();
 
@@ -25,30 +22,29 @@ class CartController extends Controller
         } else {
             return redirect()->back()->with('error', 'Cart not found.');
         }
-
-//        return [
-//            ['id'=>1423, 'name'=>'Pirmas']
-//        ];
     }
 
 
 
 
-    public function store(Request $request)
-    {
-        // Logic to add an item to the cart
-        // For example:
-        // $item = new CartItem();
-        // $item->name = $request->input('name');
-        // $item->price = $request->input('price');
-        // $item->save();
-
-        // Return the updated cart or a success response
-        return response()->json(['message' => 'Item added to cart']);
-    }
     public function add(Request $request)
     {
+        $userId = $request->user()->id;
 
+        $cart = ShoppingCart::where('user_id', $userId)->with('tickets')->first();
+
+        $cartId = $cart->id; // Replace this with the actual cart ID (retrieve it from the authenticated user's cart or as needed)
+
+        // Retrieve the ticket ID from the request or any other source
+        $ticketId = $request->input('ticket_id');
+
+        // Find the shopping cart instance
+        $cart = ShoppingCart::findOrFail($cartId);
+
+        // Attach the ticket to the cart
+        $cart->tickets()->attach($ticketId);
+
+        return response()->json(['message' => 'Ticket added to cart']);
     }
 
     public function remove(Request $request)
