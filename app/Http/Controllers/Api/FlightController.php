@@ -76,6 +76,7 @@ class FlightController extends Controller
             return new Response(sprintf('Flight not found by id %s', $flightId), 404);
         }
 
+
         $flight->update($request->all());
 
         return $flight;
@@ -88,6 +89,9 @@ class FlightController extends Controller
         if ( $flight == null ) {
             return new Response(sprintf('Flight not found by id %s', $flightId), 404);
         }
+
+
+        $tickets = Ticket::query()->where('flight_id', $flightId)->delete();
 
         $flight->delete();
 

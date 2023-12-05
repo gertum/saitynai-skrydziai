@@ -32,19 +32,41 @@ class TicketController
     }
 
     //TODO
-    public function read($flightId)
+    public function read($id)
     {
+        $ticket = Ticket::query()->find($id);
 
+        if ($ticket == null) {
+            return new Response(sprintf('Ticket not found by id [%s]', $id), 404);
+        }
+
+        return $ticket;
     }
 
     //TODO
-    public function update(Request $request, $flightId)
+    public function update(Request $request, $id)
     {
+        $ticket = Ticket::query()->find($id);
 
+        if ( $ticket == null ) {
+            return new Response(sprintf('Ticket not found by id %s', $id), 404);
+        }
+
+        $ticket->update($request->all());
+
+        return $ticket;
     }
 
-    public function delete(Request $request, $flightId)
+    public function delete(Request $request, $id)
     {
+        $ticket = Ticket::query()->find($id);
 
+        if ( $ticket == null ) {
+            return new Response(sprintf('Ticket not found by id %s', $id), 404);
+        }
+
+        $ticket->delete();
+
+        return $ticket;
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AirportController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\FlightController;
+use App\Http\Controllers\Api\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,9 +38,17 @@ Route::delete('/flight/{flightId}', [FlightController::class, 'delete']);
 Route::get('/flight/{flightId}/tickets', [FlightController::class, 'getTickets']);
 
 
-//Route::get('/ticket', [Tick::class, 'getTickets']);
+Route::get('/ticket/{id}', [TicketController::class, 'read']);
+Route::post('/ticket', [TicketController::class, 'create']);
+Route::put('/ticket/{id}', [TicketController::class, 'update']);
+Route::delete('/ticket/{id}', [TicketController::class, 'delete']);
 
-Route::get('/airport/{id}', [AirportController::class, 'getAirportById']);
+//Route::get('/airport/{id}', [AirportController::class, 'getAirportById']);
+Route::get('/airport/{id}', [AirportController::class, 'read']);
+Route::put('/airport/{id}', [AirportController::class, 'update']);
+Route::delete('/airport/{id}', [AirportController::class, 'delete']);
+
+
 Route::get('/country/{id}', [CountryController::class, 'getCountryById']);
 
 
