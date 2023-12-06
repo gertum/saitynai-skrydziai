@@ -3,6 +3,9 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -24,7 +27,15 @@ class Handler extends ExceptionHandler
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
-            //
         });
+
+        $this->renderable(function (SaitynaiValidationException $e, Request $request) {
+            return new JsonResponse(['message' => $e->getMessage()], 400);
+        });
+
+        $this->renderable(function (UnauthorizedException $e, Request $request) {
+            return new JsonResponse(['message' => $e->getMessage()], 401);
+        });
+
     }
 }

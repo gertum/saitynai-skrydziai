@@ -42,10 +42,10 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/ticket/{id}', [TicketController::class, 'read']);
-Route::get('/ticket', [TicketController::class, 'search']);
 
 Route::middleware('auth')->group(function () {
+    Route::get('/ticket/{id}', [TicketController::class, 'read']);
+    Route::get('/ticket', [TicketController::class, 'search']);
     Route::post('/ticket', [TicketController::class, 'create']);
     Route::put('/ticket/{id}', [TicketController::class, 'update']);
     Route::delete('/ticket/{id}', [TicketController::class, 'delete']);
@@ -53,8 +53,9 @@ Route::middleware('auth')->group(function () {
 
 //Route::get('/airport/{id}', [AirportController::class, 'getAirportById']);
 
-Route::get('/airport/{id}', [AirportController::class, 'read']);
 Route::get('/airport', [AirportController::class, 'search']);
+Route::get('/airport/{id}', [AirportController::class, 'read']);
+Route::get('/airport/{id}/tickets', [AirportController::class, 'tickets']);
 
 Route::middleware('auth')->group(function () {
     Route::put('/airport/{id}', [AirportController::class, 'update']);

@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Flight;
 use App\Models\Ticket;
+use App\Models\User;
+use Database\Seeders\UserRoleSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 
 class FlightController extends Controller
 {
@@ -35,9 +38,15 @@ class FlightController extends Controller
             ->get();
     }
 
-    //TODO
     public function create(Request $request)
     {
+        /** @var User $user */
+        $user = auth()->user();
+
+        if (!$user->hasRole(UserRoleSeeder::ROLE_ADMIN)) {
+            throw new UnauthorizedException(401, 'Admin role needed');
+        }
+
         $validatedData = $request->validate([
             'real_departure_time' => 'date',
             'real_arrival_time' => 'date',
@@ -53,7 +62,6 @@ class FlightController extends Controller
 
     }
 
-    //TODO
     public function read($flightId)
     {
         $flight = Flight::query()->find($flightId);
@@ -65,7 +73,6 @@ class FlightController extends Controller
         return $flight;
     }
 
-    //TODO
     public function update(Request $request, $flightId)
     {
 

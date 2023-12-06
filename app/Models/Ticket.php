@@ -17,10 +17,6 @@ class Ticket extends Model
     {
         return $this->belongsTo(Flight::class);
     }
-    public function tickets()
-    {
-        return $this->belongsToMany(Ticket::class)->withTimestamps();
-    }
 
     public function scopeFlight(Builder $builder, $flightId) {
         return $builder->where('flight_id', $flightId);
