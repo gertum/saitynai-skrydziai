@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\FlightController;
 use App\Http\Controllers\Api\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,19 @@ Route::post('/airport', [AirportController::class, 'create']);
 
 Route::get('/country/{id}', [CountryController::class, 'getCountryById']);
 
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', [AuthController::class,'login']);
+    Route::post('logout', [AuthController::class,'logout']);
+    Route::post('refresh', [AuthController::class,'refresh']);
+    Route::post('me', [AuthController::class,'me']);
+
+});
 
 
 //Route::get('/tickets', 'TicketApiController@index'); // API endpoint to fetch tickets data
