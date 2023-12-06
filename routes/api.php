@@ -33,27 +33,41 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/flight', [FlightController::class, 'search']);
 Route::get('/flight/{flightId}', [FlightController::class, 'read']);
-Route::post('/flight', [FlightController::class, 'create']);
-Route::put('/flight/{flightId}', [FlightController::class, 'update']);
-Route::delete('/flight/{flightId}', [FlightController::class, 'delete']);
 Route::get('/flight/{flightId}/tickets', [FlightController::class, 'getTickets']);
+
+Route::middleware('auth')->group(function () {
+    Route::post('/flight', [FlightController::class, 'create']);
+    Route::put('/flight/{flightId}', [FlightController::class, 'update']);
+    Route::delete('/flight/{flightId}', [FlightController::class, 'delete']);
+});
 
 
 Route::get('/ticket/{id}', [TicketController::class, 'read']);
 Route::get('/ticket', [TicketController::class, 'search']);
-Route::post('/ticket', [TicketController::class, 'create']);
-Route::put('/ticket/{id}', [TicketController::class, 'update']);
-Route::delete('/ticket/{id}', [TicketController::class, 'delete']);
+
+Route::middleware('auth')->group(function () {
+    Route::post('/ticket', [TicketController::class, 'create']);
+    Route::put('/ticket/{id}', [TicketController::class, 'update']);
+    Route::delete('/ticket/{id}', [TicketController::class, 'delete']);
+});
 
 //Route::get('/airport/{id}', [AirportController::class, 'getAirportById']);
+
 Route::get('/airport/{id}', [AirportController::class, 'read']);
 Route::get('/airport', [AirportController::class, 'search']);
-Route::put('/airport/{id}', [AirportController::class, 'update']);
-Route::delete('/airport/{id}', [AirportController::class, 'delete']);
-Route::post('/airport', [AirportController::class, 'create']);
+
+Route::middleware('auth')->group(function () {
+    Route::put('/airport/{id}', [AirportController::class, 'update']);
+    Route::delete('/airport/{id}', [AirportController::class, 'delete']);
+    Route::post('/airport', [AirportController::class, 'create']);
+});
 
 
 Route::get('/country/{id}', [CountryController::class, 'getCountryById']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/country', [CountryController::class, 'getAll']);
+});
 
 Route::group([
 
@@ -61,12 +75,10 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router) {
-
-    Route::post('login', [AuthController::class,'login']);
-    Route::post('logout', [AuthController::class,'logout']);
-    Route::post('refresh', [AuthController::class,'refresh']);
-    Route::post('me', [AuthController::class,'me']);
-
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::post('me', [AuthController::class, 'me']);
 });
 
 

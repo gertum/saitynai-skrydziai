@@ -19,4 +19,8 @@ class CountryController extends Controller
 
         return response()->json($country);
     }
+
+    public function getAll() {
+        return Country::all();
+    }
 }
