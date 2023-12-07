@@ -13,6 +13,13 @@ class TicketController
 {
     public function create(Request $request)
     {
+        /** @var User $user */
+        $user = auth()->user();
+
+        if (!$user->hasRole(UserRoleSeeder::ROLE_ADMIN)) {
+            throw new UnauthorizedException(401, 'Admin role needed');
+        }
+
         $validatedData = $request->validate([
             'price' => 'required|numeric',
             'flight_id' => 'required|exists:flights,id',
@@ -45,6 +52,13 @@ class TicketController
 
     public function update(Request $request, $id)
     {
+        /** @var User $user */
+        $user = auth()->user();
+
+        if (!$user->hasRole(UserRoleSeeder::ROLE_ADMIN)) {
+            throw new UnauthorizedException(401, 'Admin role needed');
+        }
+
         $validatedData = $request->validate([
             'price' => 'numeric',
             'flight_id' => 'exists:flights,id',
@@ -63,6 +77,13 @@ class TicketController
 
     public function delete(Request $request, $id)
     {
+        /** @var User $user */
+        $user = auth()->user();
+
+        if (!$user->hasRole(UserRoleSeeder::ROLE_ADMIN)) {
+            throw new UnauthorizedException(401, 'Admin role needed');
+        }
+
         $ticket = Ticket::query()->find($id);
 
         if ($ticket == null) {

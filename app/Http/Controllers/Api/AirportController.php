@@ -15,17 +15,17 @@ use Spatie\Permission\Exceptions\UnauthorizedException;
 
 class AirportController extends Controller
 {
-    public function getAirportById(Request $request)
-    {
-        $airportId = $request->route('id'); // Accessing the parameter from the route
-        $airport = Airport::find($airportId);
-//        $airport = Airport::with('country')->find($airportId);
-        if (!$airport) {
-            return response()->json(['message' => 'Airport not found'], 404);
-        }
-
-        return response()->json($airport);
-    }
+//    public function getAirportById(Request $request)
+//    {
+//        $airportId = $request->route('id'); // Accessing the parameter from the route
+//        $airport = Airport::find($airportId);
+////        $airport = Airport::with('country')->find($airportId);
+//        if (!$airport) {
+//            return response()->json(['message' => 'Airport not found'], 404);
+//        }
+//
+//        return response()->json($airport);
+//    }
 
     public function create(Request $request)
     {
@@ -56,6 +56,7 @@ class AirportController extends Controller
 
     public function read($id)
     {
+
         $airport = Airport::query()->find($id);
 
         if ($airport == null) {
@@ -67,6 +68,13 @@ class AirportController extends Controller
 
     public function update(Request $request, $id)
     {
+        /** @var User $user */
+        $user = auth()->user();
+
+        if (!$user->hasRole(UserRoleSeeder::ROLE_ADMIN)) {
+            throw new UnauthorizedException(401, 'Admin role needed');
+        }
+
         $airport = Airport::query()->find($id);
 
         if ($airport == null) {
@@ -86,6 +94,13 @@ class AirportController extends Controller
 
     public function delete(Request $request, $id)
     {
+        /** @var User $user */
+        $user = auth()->user();
+
+        if (!$user->hasRole(UserRoleSeeder::ROLE_ADMIN)) {
+            throw new UnauthorizedException(401, 'Admin role needed');
+        }
+
         $airport = Airport::query()->find($id);
 
         if ($airport == null) {

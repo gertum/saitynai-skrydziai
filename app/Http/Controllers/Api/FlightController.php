@@ -75,7 +75,12 @@ class FlightController extends Controller
 
     public function update(Request $request, $flightId)
     {
+        /** @var User $user */
+        $user = auth()->user();
 
+        if (!$user->hasRole(UserRoleSeeder::ROLE_ADMIN)) {
+            throw new UnauthorizedException(401, 'Admin role needed');
+        }
 
         $flight = Flight::query()->find($flightId);
 
@@ -100,6 +105,13 @@ class FlightController extends Controller
 
     public function delete(Request $request, $flightId)
     {
+        /** @var User $user */
+        $user = auth()->user();
+
+        if (!$user->hasRole(UserRoleSeeder::ROLE_ADMIN)) {
+            throw new UnauthorizedException(401, 'Admin role needed');
+        }
+
         $flight = Flight::query()->find($flightId);
 
         if ( $flight == null ) {
