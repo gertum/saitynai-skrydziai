@@ -124,12 +124,12 @@ class AirportController extends Controller
     {
         $limit = $request->get('limit', 10);
         $offset = $request->get('offset', 0);
-        $tickets = Ticket::query()
+        $airports = Airport::query()
             ->offset($offset)
             ->limit($limit)
             ->get();
 //
-        return $tickets;
+        return $airports;
     }
 
     public function tickets($id)
