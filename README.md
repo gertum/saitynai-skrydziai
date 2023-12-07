@@ -1,6 +1,6 @@
-    Sprendžiamo uždavinio aprašymas 
+# Sprendžiamo uždavinio aprašymas 
 
-    Sistemos paskirtis 
+## Sistemos paskirtis 
 
 Projektas bus skirtas kelionių oro keliais organizavimo palengvinimui, keleivio kelionės maršruto sudarymui.
 
@@ -12,7 +12,7 @@ Darbuotojas turės galimybę pridėti naujus skrydžius, parinkti oro uostus iš
 
 
 
-    Funkciniai reikalavimai 
+## Funkciniai reikalavimai 
 
 Neregistruotas sistemos vartotojas galės:
 
@@ -62,7 +62,8 @@ Registruotas klientas galės:
 
     Pridėti naują skrydį. 
 
-    Sistemos architektūra 
+
+## Sistemos architektūra 
 
 Sistemos dalys:
 
