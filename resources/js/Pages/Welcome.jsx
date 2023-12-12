@@ -9,6 +9,43 @@ export default function Welcome({auth}) {
     const [flights, setFlights] = useState([]);
     const [loadingFlights, setLoadingFlights] = useState(false);
     const [errorFlights, setErrorFlights] = useState('');
+// Inside your functional component
+    const [offset, setOffset] = useState(0); // Initialize offset for pagination
+    const limit = 10; // Define the limit for the number of flights per request
+    // const scrollContainerRef = useRef(null);
+
+// Function to fetch more flights
+    const fetchMoreFlights = async () => {
+        // event.preventDefault();
+        try {
+            setLoadingFlights(true);
+            const access_token = cookies.access_token;
+            const newFlightsResponse = await axios.get(`/api/flight?offset=${offset + limit}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + access_token
+                }
+            });
+
+            // Append new flights to the existing flights list
+            setFlights(prevFlights => [...prevFlights, ...newFlightsResponse.data]);
+            setOffset(prevOffset => prevOffset + limit); // Update the offset for the next call
+        } catch (error) {
+            setErrorFlights(error.message);
+        } finally {
+            setLoadingFlights(false);
+        }
+    };
+
+// Function to handle scroll events
+    const handleScroll = () => {
+        const { scrollTop, clientHeight, scrollHeight } = document.documentElement || document.body;
+        if (scrollHeight - scrollTop === clientHeight) {
+            // User has scrolled to the bottom
+            fetchMoreFlights(); // Fetch more flights when reaching the bottom
+        }
+    };
+
 
     useEffect(() => {
         const fetchFlights = async () => {
@@ -37,6 +74,11 @@ export default function Welcome({auth}) {
         };
 
         fetchFlights();
+    }, []);
+// Add event listener to the window for scroll detection
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     // //TODO
