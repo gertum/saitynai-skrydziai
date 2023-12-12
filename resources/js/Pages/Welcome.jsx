@@ -13,11 +13,11 @@ export default function Welcome({auth}) {
             try {
                 setLoadingFlights(true);
 
-                const flightsResponse = await axios.get('/api/flights');
+                const flightsResponse = await axios.get('/api/flight');
                 // const flightsResponse = await axios.get('/api/flights', {params: {arrival_name:'Airport'}});
 
 
-                console.log('Cart API Response:', cartResponse.data);
+                // console.log('Cart API Response:', cartResponse.data);
                 setFlights(flightsResponse.data);
             } catch (error) {
                 setErrorFlights(error.message);
