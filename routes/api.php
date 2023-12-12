@@ -30,8 +30,9 @@ Route::middleware('auth')->group(function () {
 });
 
 //Route::get('/cart', [CartController::class, 'show']);
-
-Route::get('/flight', [FlightController::class, 'search']);
+//Route::middleware('auth')->group(function () {
+    Route::get('/flight', [FlightController::class, 'search']);
+//});
 Route::get('/flight/{flightId}', [FlightController::class, 'read']);
 Route::get('/flight/{flightId}/tickets', [FlightController::class, 'getTickets']);
 

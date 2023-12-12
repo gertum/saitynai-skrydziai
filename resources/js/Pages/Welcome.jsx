@@ -1,8 +1,10 @@
 import {Link, Head} from '@inertiajs/react';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
+import {useCookies} from "react-cookie";
 
 export default function Welcome({auth}) {
+    const [cookies] = useCookies(["access_token"]);
 
     const [flights, setFlights] = useState([]);
     const [loadingFlights, setLoadingFlights] = useState(false);
@@ -12,14 +14,22 @@ export default function Welcome({auth}) {
         const fetchFlights = async () => {
             try {
                 setLoadingFlights(true);
-
-                const flightsResponse = await axios.get('/api/flight');
+                const access_token = cookies.access_token;
+                console.log("access_token", access_token);
+                const flightsResponse = await axios.get('/api/flight',  {headers: {
+                    'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + access_token
+                }}
+                );
                 // const flightsResponse = await axios.get('/api/flights', {params: {arrival_name:'Airport'}});
 
 
                 // console.log('Cart API Response:', cartResponse.data);
                 setFlights(flightsResponse.data);
             } catch (error) {
+                if (error.response.status === 401) {
+                    location.href='/login';
+                }
                 setErrorFlights(error.message);
             } finally {
                 setLoadingFlights(false);
