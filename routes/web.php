@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AirportController;
 use App\Http\Controllers\CartWebController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -43,7 +44,7 @@ Route::get('/dashboard', function () {
 
 //    Route::get('/countries', [CountryController::class, 'index'])->name('countries.index');
 //    Route::get('/airplanes', [AirplaneController::class, 'index'])->name('airplanes.index');
-//    Route::get('/airports', [AirportController::class, 'index'])->name('airports.index');
+    Route::get('/airports', [AirportController::class, 'index'])->name('airports.index');
 //    Route::get('/flights', [FlightController::class, 'index'])->name('flights.index');
 
 //    Route::get('/flights', function () {
