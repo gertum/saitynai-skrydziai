@@ -2,7 +2,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import {Link} from '@inertiajs/react';
 import GuestMenu from '../Components/GuestMenu.jsx'; // Import the GuestMenu component
 
-export default function Guest({children}) {
+export default function GuestLayout({children}) {
     return (
         // <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">
 
