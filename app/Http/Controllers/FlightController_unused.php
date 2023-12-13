@@ -6,10 +6,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class FlightController extends Controller
+class FlightControllerUnused extends Controller
 {
     public function index()
     {
-        return Inertia::render('Flights/List');
+        return Inertia::render('Flights_unused/List');
     }
 }

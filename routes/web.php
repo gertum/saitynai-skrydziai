@@ -49,10 +49,10 @@ Route::get('/dashboard', function () {
     Route::get('/airports', [AirportController::class, 'index'])->name('airports.index');
     Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index'); // Display available tickets
 
-//    Route::get('/flights', [FlightController::class, 'index'])->name('flights.index');
+//    Route::get('/flights', [FlightControllerUnused::class, 'index'])->name('flights.index');
 
 //    Route::get('/flights', function () {
-//        return Inertia::render('Flights/List');
+//        return Inertia::render('Flights_unused/List');
 //    });
 
     Route::get('/cart', [CartWebController::class, 'index'])->name('cart');

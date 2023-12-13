@@ -30,6 +30,7 @@ export default function TicketList({ auth }) {
             <div className="py-12 bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white sm:rounded-lg">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                     <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg ">
+                        <h1>Tickets</h1>
                         {loading ? (
                             <p>Loading...</p>
                         ) : error ? (
@@ -40,8 +41,7 @@ export default function TicketList({ auth }) {
                                 <tr>
                                     <th>ID</th>
                                     <th>Flight ID</th>
-                                    <th>Passenger Name</th>
-                                    <th>Seat Number</th>
+                                    <th>Sold</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -49,8 +49,7 @@ export default function TicketList({ auth }) {
                                     <tr key={index}>
                                         <td>{ticket.id}</td>
                                         <td>{ticket.flight_id}</td>
-                                        <td>{ticket.passenger_name}</td>
-                                        <td>{ticket.seat_number}</td>
+                                        <td>{ticket.purchased ? 'true' : 'false'}</td>
                                     </tr>
                                 ))}
                                 </tbody>

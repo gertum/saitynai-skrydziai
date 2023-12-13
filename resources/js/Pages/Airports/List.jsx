@@ -30,6 +30,7 @@ export default function List({auth}) {
             <div className="py-12 bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white sm:rounded-lg">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                     <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg ">
+                        <h1>Airports</h1>
                         {loading ? (
                             <p>Loading...</p>
                         ) : error ? (
