@@ -3,30 +3,30 @@ import axios from 'axios';
 import { Head } from '@inertiajs/react';
 import Layout from "../../Layouts/Layout.jsx";
 
-export default function List({auth}) {
-    const [airports, setAirports] = useState([]);
+export default function TicketList({ auth }) {
+    const [tickets, setTickets] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     useEffect(() => {
-        const fetchAirports = async () => {
+        const fetchTickets = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('/api/airport'); // Adjust the endpoint accordingly
-                setAirports(response.data);
+                const response = await axios.get('/api/ticket'); // Replace with your endpoint
+                setTickets(response.data);
             } catch (error) {
-                setError('Error fetching airports');
+                setError('Error fetching tickets');
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchAirports();
+        fetchTickets();
     }, []);
 
     return (
         <Layout auth={auth}>
-            <Head title="Airports list" />
+            <Head title="Tickets list" />
             <div className="py-12 bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white sm:rounded-lg">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                     <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg ">
@@ -39,20 +39,18 @@ export default function List({auth}) {
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>IATA Code</th>
-                                    <th>City</th>
-                                    <th>Country ID</th>
+                                    <th>Flight ID</th>
+                                    <th>Passenger Name</th>
+                                    <th>Seat Number</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {airports.map((airport, index) => (
+                                {tickets.map((ticket, index) => (
                                     <tr key={index}>
-                                        <td>{airport.id}</td>
-                                        <td>{airport.name}</td>
-                                        <td>{airport.iata_code}</td>
-                                        <td>{airport.city}</td>
-                                        <td>{airport.country_id}</td>
+                                        <td>{ticket.id}</td>
+                                        <td>{ticket.flight_id}</td>
+                                        <td>{ticket.passenger_name}</td>
+                                        <td>{ticket.seat_number}</td>
                                     </tr>
                                 ))}
                                 </tbody>

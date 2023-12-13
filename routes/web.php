@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AirplaneController;
 use App\Http\Controllers\AirportController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CartWebController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -45,13 +47,14 @@ Route::get('/dashboard', function () {
 //    Route::get('/countries', [CountryController::class, 'index'])->name('countries.index');
 //    Route::get('/airplanes', [AirplaneController::class, 'index'])->name('airplanes.index');
     Route::get('/airports', [AirportController::class, 'index'])->name('airports.index');
+    Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index'); // Display available tickets
+
 //    Route::get('/flights', [FlightController::class, 'index'])->name('flights.index');
 
 //    Route::get('/flights', function () {
 //        return Inertia::render('Flights/List');
 //    });
 
-//    Route::get('/tickets', 'TicketController@index')->name('tickets.index'); // Display available tickets
     Route::get('/cart', [CartWebController::class, 'index'])->name('cart');
 //});
 
