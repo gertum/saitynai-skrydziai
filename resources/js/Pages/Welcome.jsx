@@ -10,7 +10,7 @@ export default function Welcome({auth}) {
     const [flights, setFlights] = useState([]);
     const [loadingFlights, setLoadingFlights] = useState(false);
     const [errorFlights, setErrorFlights] = useState('');
-// Inside your functional component
+
 //     const [offset, setOffset] = useState(0); // Initialize offset for pagination
 //     const limit = 10; // Define the limit for the number of flights per request
 //     // const scrollContainerRef = useRef(null);

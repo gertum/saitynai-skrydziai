@@ -100,12 +100,12 @@ class TicketController
         /** @var User $user */
         $user = auth()->user();
 
-        if (!($user->hasRole(UserRoleSeeder::ROLE_ADMIN)
-            || $user->hasRole(UserRoleSeeder::ROLE_MEMBER)
-        )
-        ) {
-            throw new UnauthorizedException(401, 'Member role needed');
-        }
+//        if (!($user->hasRole(UserRoleSeeder::ROLE_ADMIN)
+//            || $user->hasRole(UserRoleSeeder::ROLE_MEMBER)
+//        )
+//        ) {
+//            throw new UnauthorizedException(401, 'Member role needed');
+//        }
 
         $limit = $request->get('limit', 10);
         $offset = $request->get('offset', 0);

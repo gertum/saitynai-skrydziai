@@ -43,15 +43,15 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::get('/ticket', [TicketController::class, 'search']);
+Route::get('/ticket/{id}', [TicketController::class, 'read']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/ticket/{id}', [TicketController::class, 'read']);
     Route::post('/ticket', [TicketController::class, 'create']);
     Route::put('/ticket/{id}', [TicketController::class, 'update']);
     Route::delete('/ticket/{id}', [TicketController::class, 'delete']);
 });
 
-Route::get('/ticket', [TicketController::class, 'search']);
 
 //Route::get('/airport/{id}', [AirportController::class, 'getAirportById']);
 
