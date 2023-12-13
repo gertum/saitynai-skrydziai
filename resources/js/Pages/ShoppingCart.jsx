@@ -1,7 +1,7 @@
 import {Link, Head} from '@inertiajs/react';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import AuthenticatedLayout from '@/Layouts/MemberLayout.jsx';
 
 
 export default function ShoppingCart({ auth }) {
