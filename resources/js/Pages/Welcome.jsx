@@ -11,42 +11,6 @@ export default function Welcome({auth}) {
     const [loadingFlights, setLoadingFlights] = useState(false);
     const [errorFlights, setErrorFlights] = useState('');
 
-//     const [offset, setOffset] = useState(0); // Initialize offset for pagination
-//     const limit = 10; // Define the limit for the number of flights per request
-//     // const scrollContainerRef = useRef(null);
-//
-// // Function to fetch more flights
-//     const fetchMoreFlights = async () => {
-//         // event.preventDefault();
-//         try {
-//             setLoadingFlights(true);
-//             const access_token = cookies.access_token;
-//             const newFlightsResponse = await axios.get(`/api/flight?offset=${offset + limit}`, {
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                     'Authorization': 'Bearer ' + access_token
-//                 }
-//             });
-//
-//             // Append new flights to the existing flights list
-//             setFlights(prevFlights => [...prevFlights, ...newFlightsResponse.data]);
-//             setOffset(prevOffset => prevOffset + limit); // Update the offset for the next call
-//         } catch (error) {
-//             setErrorFlights(error.message);
-//         } finally {
-//             setLoadingFlights(false);
-//         }
-//     };
-//
-// // Function to handle scroll events
-//     const handleScroll = () => {
-//         const { scrollTop, clientHeight, scrollHeight } = document.documentElement || document.body;
-//         if (scrollHeight - scrollTop === clientHeight) {
-//             // User has scrolled to the bottom
-//             fetchMoreFlights(); // Fetch more flights when reaching the bottom
-//         }
-//     };
-
 
     useEffect(() => {
         const fetchFlights = async () => {
@@ -76,11 +40,6 @@ export default function Welcome({auth}) {
 
         fetchFlights();
     }, []);
-// // Add event listener to the window for scroll detection
-//     useEffect(() => {
-//         window.addEventListener('scroll', handleScroll);
-//         return () => window.removeEventListener('scroll', handleScroll);
-//     }, []);
 
     // //TODO
     // const handleAddTicketClick = async (flightId) => {
@@ -100,42 +59,9 @@ export default function Welcome({auth}) {
         <Layout auth={auth}>
             <Head title="Welcome"/>
             <div
-                className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white sm:rounded-lg">
-                {/*<div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">*/}
-                {/*    {auth.user ? (*/}
-                {/*        <Link*/}
-                {/*            href={route('dashboard')}*/}
-                {/*            className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"*/}
-                {/*        >*/}
-                {/*            Dashboard*/}
-                {/*        </Link>*/}
-                {/*    ) : (*/}
-                {/*        <>*/}
-                {/*            <Link*/}
-                {/*                href={route('login')}*/}
-                {/*                className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"*/}
-                {/*            >*/}
-                {/*                Log in*/}
-                {/*            </Link>*/}
-
-                {/*            <Link*/}
-                {/*                href={route('register')}*/}
-                {/*                className="ms-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"*/}
-                {/*            >*/}
-                {/*                Register*/}
-                {/*            </Link>*/}
-                {/*        </>*/}
-                {/*    )}*/}
-
-                {/*    <div>*/}
-                {/*        <Link*/}
-                {/*            href={route('cart')}*/}
-                {/*            className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"*/}
-                {/*        >*/}
-                {/*            Shopping cart*/}
-                {/*        </Link>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
+                style={{backgroundColor: "#65c9d4"}}
+            >
 
                 <div className="max-w-7xl mx-auto p-6 lg:p-8">
 
