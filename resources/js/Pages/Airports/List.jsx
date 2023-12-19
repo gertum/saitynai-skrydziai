@@ -31,7 +31,6 @@ export default function List({auth}) {
                 className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
                 style={{backgroundColor: "#65c9d4"}}
             >
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                     <div className="p-4 sm:p-8 bg-gray-200 shadow sm:rounded-lg ">
                         <h1>Airports</h1>
                         {loading ? (
@@ -64,7 +63,6 @@ export default function List({auth}) {
                         )}
                     </div>
                 </div>
-            </div>
         </Layout>
     );
 }

@@ -14,3 +14,12 @@ h1{
     color: #333;
     font-size: 2em;
 }
+@font-face {
+    font-family: 'Yantramanav';
+    src: url('../fonts/Yantramanav-Regular.ttf') format('truetype');
+    /* Other font properties (optional) */
+}
+/* Apply the font to all elements */
+* {
+    font-family: 'Yantramanav';
+}
