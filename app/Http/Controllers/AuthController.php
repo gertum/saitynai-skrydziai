@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+//for changed me
+use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -43,6 +46,25 @@ class AuthController extends Controller
     {
         return response()->json(auth()->user());
     }
+//    public function me(Request $request)
+//    {
+//        $accessToken = $request->cookie('access_token'); // Retrieve the access_token from the cookie
+//
+//        if (!$accessToken) {
+//            return response()->json(['error' => 'Unauthorized'], 401);
+//        }
+//
+//        try {
+//            $user = JWTAuth::setToken($accessToken)->toUser(); // Authenticate the user using JWTAuth
+//            return response()->json($user);
+//        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+//            return response()->json(['error' => 'Token Expired'], 401);
+//        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+//            return response()->json(['error' => 'Token Invalid'], 401);
+//        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+//            return response()->json(['error' => 'Token Absent'], 401);
+//        }
+//    }
 
     /**
      * Log the user out (Invalidate the token).

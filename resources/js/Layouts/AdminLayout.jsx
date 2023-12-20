@@ -1,6 +1,6 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import {Link} from '@inertiajs/react';
-// import GuestMenu from '../Components/GuestMenu.jsx'; // Import the GuestMenu component
+import GuestMenu from '../Components/GuestMenu.jsx'; // Import the GuestMenu component
 
 export default function AdminLayout({children}) {
     return (

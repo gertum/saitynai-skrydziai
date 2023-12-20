@@ -58,10 +58,6 @@ export default function Welcome({auth}) {
     return (
         <Layout auth={auth}>
             <Head title="Welcome"/>
-            <div
-                className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
-                style={{backgroundColor: "#65c9d4"}}
-            >
 
                 <div className="max-w-7xl mx-auto p-6 lg:p-8">
 
@@ -126,7 +122,6 @@ export default function Welcome({auth}) {
                         )}
                     </div>
                 </div>
-            </div>
 
 
             <style>{`

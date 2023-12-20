@@ -30,9 +30,9 @@ Route::middleware('auth')->group(function () {
 });
 
 //Route::get('/cart', [CartController::class, 'show']);
-//Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/flight', [FlightController::class, 'search']);
-//});
+});
 Route::get('/flight/{flightId}', [FlightController::class, 'read']);
 Route::get('/flight/{flightId}/tickets', [FlightController::class, 'getTickets']);
 
@@ -82,6 +82,7 @@ Route::group([
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
+    Route::get('me', [AuthController::class, 'me']);
 });
 
 

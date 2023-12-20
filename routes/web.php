@@ -60,3 +60,9 @@ Route::get('/dashboard', function () {
 
 Route::get('/error', [ErrorController::class, 'error'])->name('error');
 require __DIR__ . '/auth.php';
+
+
+
+Route::get('/test-me', function () {
+    return Inertia::render('Auth/TestMe');
+})->name('test.me');
