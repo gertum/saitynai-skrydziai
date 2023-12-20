@@ -2,19 +2,49 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import {Link} from '@inertiajs/react';
 import GuestMenu from '../Components/GuestMenu.jsx'; // Import the GuestMenu component
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
-const handleLogout = async () => {
-    try {
-        await axios.post('/api/auth/logout'); // Make a POST request to the logout endpoint
-        // After successful logout, perform necessary actions (redirect, etc.)
-        // For example, navigate the user to the login page
-        // history.push('/login'); // Use history from React Router to redirect
-    } catch (error) {
-        console.error('Logout failed:', error);
-        // Handle logout error (e.g., show an error message)
-    }
-};
+
+
+
 export default function AdminLayout({children}) {
+
+
+    const [cookies] = useCookies(['access_token']); // Get the 'access_token' cookie
+
+    const handleLogout = async () => {
+        try {
+            const access_token = cookies.access_token;
+            console.log("access_token", access_token);
+
+            axios.post('/api/auth/logout', {}, {
+                headers: {
+                    'Authorization': 'Bearer ' + access_token,
+                    'Content-Type': 'application/json'
+                }
+            })
+                // axiosInstance.get('/api/auth/me')
+                .then((response) => {
+                    window.location.reload();
+                })
+                .catch(() => {
+                    // setUser(null);
+                })
+                .finally(() => {
+                    // setLoading(false);
+                });
+            // Make a POST request to the logout endpoint
+            // After successful logout, perform necessary actions (redirect, etc.)
+            // For example, navigate the user to the login page
+            // history.push('/login'); // Use history from React Router to redirect
+        } catch (error) {
+            console.error('Logout failed:', error);
+            // Handle logout error (e.g., show an error message)
+        }
+    };
+
+
+
     return (
         // <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">
 
