@@ -68,11 +68,23 @@ export default function AdminLayout({children}) {
                     </Link>
                     <GuestMenu/> {/* Include the GuestMenu here */}
                 </div>
-                <div className="w-full max-w-4xl mx-auto bg-white shadow-md sm:rounded-lg">
-                    {children}
+
+
+                <div
+                    className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
+                    style={{backgroundColor: "#66D4BA"}}>
+                    <div className="max-w-7xl mx-auto p-6 lg:p-8">
+                        <div className="p-4 sm:p-8 bg-gray-200 mx-auto shadow sm:rounded-lg custom-margins text-center">
+
+                        </div>
+
+                        {/*<div className="w-full max-w-4xl mx-auto bg-white shadow-md sm:rounded-lg">*/}
+                        {children}
+                    </div>
                 </div>
             </div>
+
+
         </div>
-    )
-        ;
+    );
 }

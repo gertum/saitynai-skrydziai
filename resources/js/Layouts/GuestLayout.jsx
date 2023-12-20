@@ -39,8 +39,16 @@ export default function GuestLayout({children}) {
                     </Link>
                     <GuestMenu/> {/* Include the GuestMenu here */}
                 </div>
-                <div className="w-full max-w-4xl mx-auto bg-white shadow-md sm:rounded-lg">
-                    {children}
+
+
+                <div
+                    className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
+                    style={{backgroundColor: "#65c9d4"}}>
+                    <div className="max-w-7xl mx-auto p-6 lg:p-8">
+
+                        {/*<div className="w-full max-w-4xl mx-auto bg-white shadow-md sm:rounded-lg">*/}
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>

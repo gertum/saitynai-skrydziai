@@ -71,30 +71,21 @@ export default function Layout({ children }) {
         return (
 
             <AdminLayout>
-            <div
-                className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
-                style={{backgroundColor: "#66D4BA"}}>
-                {children}
-            </div>
+
+                        {children}
             </AdminLayout>
     );
     }
 
     return user ? (
         <MemberLayout>
-        <div
-            className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
-            style={{backgroundColor: "#66A6D4"}}>
+
             { children }
-        </div>
         </MemberLayout>
     ) : (
         <GuestLayout>
-        <div
-            className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
-            style={{backgroundColor: "#65c9d4"}}>
+
             { children }
-        </div>
         </GuestLayout>
     );
 }
