@@ -3,7 +3,7 @@ import {Link} from '@inertiajs/react';
 import GuestMenu from '../Components/GuestMenu.jsx'; // Import the GuestMenu component
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
-
+import { useLocation } from 'react-router-dom';
 
 
 
@@ -11,6 +11,7 @@ export default function AdminLayout({children}) {
 
 
     const [cookies] = useCookies(['access_token']); // Get the 'access_token' cookie
+    const location = useLocation(); // Get the current location using React Router's useLocation hook
 
     const handleLogout = async () => {
         try {
