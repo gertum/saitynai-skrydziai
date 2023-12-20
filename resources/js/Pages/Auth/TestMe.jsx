@@ -23,8 +23,16 @@ export default function TestMe() {
             }
         })
             .then((response) => {
-                setUser(response.data);
-                // const isAdmin = hasRole(user, 'admin');
+                const userData = response.data;
+                setUser(userData);
+
+                // Check if the user has admin role directly from the 'me' endpoint response
+                const isAdmin = userData.isAdmin; // Assuming 'isAdmin' is a property indicating admin role
+
+                // Update isAdmin state
+                setIsAdmin(isAdmin);
+
+                // Other tasks based on user data if needed
             })
             .catch(() => {
                 setUser(null);
@@ -33,6 +41,12 @@ export default function TestMe() {
                 setLoading(false);
             });
     }, []);
+
+// Define isAdmin outside the useEffect hook
+    const [isAdmin, setIsAdmin] = useState(false); // Assuming initial value is false
+
+
+
 
     useEffect(() => {
         console.log("User state has changed:", user);
@@ -49,15 +63,15 @@ export default function TestMe() {
     //
     // const isAdmin = user && user.roles && user.roles.includes('admin');
 
-    // if (isAdmin) {
-    //     return (
-    //         <div
-    //             className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
-    //             style={{backgroundColor: "#66D4BA"}}>
-    //             AAAAAAAAAAAAAAAAAAA
-    //         </div>
-    // );
-    // }
+    if (isAdmin) {
+        return (
+            <div
+                className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
+                style={{backgroundColor: "#66D4BA"}}>
+                AAAAAAAAAAAAAAAAAAA
+            </div>
+    );
+    }
 
     return user ? (
         <div

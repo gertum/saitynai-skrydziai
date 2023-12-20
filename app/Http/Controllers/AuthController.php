@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Database\Seeders\UserRoleSeeder;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 //for changed me
@@ -46,10 +47,30 @@ class AuthController extends Controller
     public function me()
     {
         $user = auth()->user();
-        \Log::info('User details:', ['user' => $user]);
 
-        return response()->json($user);
-//        return response()->json(auth()->user());
+        $isAdmin = $this->hasAdminRole($user);
+
+        // You can now use $isAdmin to determine if the user has an admin role
+        if ($isAdmin) {
+            // If the user has an admin role, you might want to customize the response accordingly
+            return response()->json([
+                'user' => $user,
+                'isAdmin' => true,
+            ]);
+        }
+
+        return response()->json([
+            'user' => $user,
+            'isAdmin' => false,
+        ]);
+    }
+
+
+
+    protected function hasAdminRole($user)
+    {
+        $hasRole = $user && $user->hasRole(UserRoleSeeder::ROLE_ADMIN);
+        return $hasRole;
     }
 
     /**

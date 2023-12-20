@@ -63,6 +63,6 @@ require __DIR__ . '/auth.php';
 
 
 
-Route::get('/test-me', function () {
-    return Inertia::render('Auth/TestMe');
-})->name('test.me');
+//Route::get('/test-me', function () {
+//    return Inertia::render('Auth/TestMe');
+//})->name('test.me');
