@@ -12,32 +12,19 @@ export default function TestMe() {
     const access_token = cookies.access_token;
     console.log("access_token", access_token);
 
-    // const axiosInstance = axios.create({
-    //
-    //     baseURL: 'https://api.example.com',
-    //     timeout: 5000, // request timeout in milliseconds
-    //     headers: {
-    //         'Authorization': 'Bearer ' + access_token,
-    //         'Content-Type': 'application/json'
-    //         // other default headers...
-    //     },
-    // });
-
-    // export default axiosInstance;
-
     useEffect(() => {
         const access_token = cookies.access_token;
         console.log("access_token", access_token);
 
-        axios.post('/api/auth/me', {}, {
+        axios.get('/api/auth/me', {
             headers: {
                 'Authorization': 'Bearer ' + access_token,
                 'Content-Type': 'application/json'
             }
         })
-        // axiosInstance.get('/api/auth/me')
             .then((response) => {
                 setUser(response.data);
+                // const isAdmin = hasRole(user, 'admin');
             })
             .catch(() => {
                 setUser(null);
@@ -46,8 +33,6 @@ export default function TestMe() {
                 setLoading(false);
             });
     }, []);
-
-
 
     useEffect(() => {
         console.log("User state has changed:", user);
@@ -58,28 +43,32 @@ export default function TestMe() {
         return <p>Loading...</p>;
     }
 
-    const isAdmin = user && user.roles && user.roles.includes('admin');
+    // if (!$user->hasRole(UserRoleSeeder::ROLE_ADMIN)) {
+    //     throw new UnauthorizedException(401, 'Admin role needed');
+    // }
+    //
+    // const isAdmin = user && user.roles && user.roles.includes('admin');
 
-    if (isAdmin) {
-        return (
-            <div
-                className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
-                style={{backgroundColor: "#56B3F5"}}>
-                AAAAAAAAAAAAAAAAAAA
-            </div>
-    );
-    }
+    // if (isAdmin) {
+    //     return (
+    //         <div
+    //             className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
+    //             style={{backgroundColor: "#66D4BA"}}>
+    //             AAAAAAAAAAAAAAAAAAA
+    //         </div>
+    // );
+    // }
 
     return user ? (
         <div
             className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
-            style={{backgroundColor: "#56B3F5"}}>
+            style={{backgroundColor: "#66A6D4"}}>
             BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
         </div>
     ) : (
         <div
             className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center sm:rounded-lg"
-            style={{backgroundColor: "#56B3F5"}}>
+            style={{backgroundColor: "#65c9d4"}}>
             CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc
         </div>
     );
