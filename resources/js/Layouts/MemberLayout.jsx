@@ -1,26 +1,59 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import {Link} from '@inertiajs/react';
 import GuestMenu from '../Components/GuestMenu.jsx'; // Import the GuestMenu component
+import { useCookies } from 'react-cookie';
 
-export default function GuestLayout({children}) {
+
+
+
+export default function MemberLayout({children}) {
+
+
+    const [cookies] = useCookies(['access_token']); // Get the 'access_token' cookie
+
+    const handleLogout = async () => {
+        try {
+            const access_token = cookies.access_token;
+            console.log("access_token", access_token);
+
+            axios.post('/api/auth/logout', {}, {
+                headers: {
+                    'Authorization': 'Bearer ' + access_token,
+                    'Content-Type': 'application/json'
+                }
+            })
+                // axiosInstance.get('/api/auth/me')
+                .then((response) => {
+                    window.location.reload();
+                })
+                .catch(() => {
+                    // setUser(null);
+                })
+                .finally(() => {
+                    // setLoading(false);
+                });
+            // Make a POST request to the logout endpoint
+            // After successful logout, perform necessary actions (redirect, etc.)
+            // For example, navigate the user to the login page
+            // history.push('/login'); // Use history from React Router to redirect
+        } catch (error) {
+            console.error('Logout failed:', error);
+            // Handle logout error (e.g., show an error message)
+        }
+    };
+
     return (
         // <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">
 
         <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100">
 
             <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">
-                <Link
-                    href={route('login')}
+                <button
+                    onClick={handleLogout}
                     className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                 >
-                    Log in
-                </Link>
-                <Link
-                    href={route('register')}
-                    className="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                >
-                    Register
-                </Link>
+                    Log out
+                </button>
 
                 <Link
                     href={route('cart')}
