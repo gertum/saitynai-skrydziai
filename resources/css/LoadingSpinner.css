@@ -1,0 +1,24 @@
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Adjust as needed */
+}
+
+.spinner {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top: 3px solid #333; /* Adjust the color */
+    border-radius: 50%;
+    width: 30px; /* Adjust the size */
+    height: 30px; /* Adjust the size */
+    animation: spin 1s linear infinite; /* Define the animation */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg); /* Rotate 360 degrees */
+    }
+}

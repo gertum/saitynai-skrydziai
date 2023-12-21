@@ -1,0 +1,19 @@
+.logo-container {
+    position: relative;
+    animation: fly-around 4s ease-in-out infinite alternate; /* Define animation properties */
+}
+
+@keyframes fly-around {
+    0% {
+        transform: translateY(0) translateX(0); /* Initial position */
+    }
+    100% {
+        transform: translateY(-20px) translateX(20px); /* Move it up and right */
+    }
+}
+
+.logo-svg {
+    width: 100px; /* Adjust the size of your SVG */
+    height: auto; /* Adjust the size of your SVG */
+    /* Other styles for your SVG */
+}

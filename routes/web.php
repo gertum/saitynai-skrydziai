@@ -93,3 +93,11 @@ Route::get('/add-flight', function () {
 Route::get('/add-airport', function () {
     return Inertia::render('Airports/Add');
 })->name('add.airport');
+
+Route::get('/load', function () {
+    return Inertia::render('LoadingSpinner');
+})->name('load');
+
+Route::get('/fly', function () {
+    return Inertia::render('FlyingLogo');
+})->name('fly');

@@ -3,13 +3,41 @@
 import MemberLayout from '@/Layouts/MemberLayout.jsx';
 import GuestLayout from '@/Layouts/GuestLayout';
 import AdminLayout from '@/Layouts/AdminLayout';
+
 import { CSSTransition } from 'react-transition-group';
+
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-export default function Layout({ children }) {
+
+const LayoutSelector = ({ isAdmin, user, children }) => {
+    let LayoutComponent;
+
+    if (isAdmin) {
+        LayoutComponent = AdminLayout;
+    } else if (user) {
+        LayoutComponent = MemberLayout;
+    } else {
+        LayoutComponent = GuestLayout;
+    }
+
+    return(
+        <div>
+            {/*<div>*/}
+            {/*    <CSSTransition in={show} timeout={300} classNames="fade">*/}
+            {/*        <div className="my-element">Content to animate</div>*/}
+            {/*    </CSSTransition>*/}
+            {/*</div>*/}
+
+            <LayoutComponent>
+                {children}
+            </LayoutComponent>
+        </div>);
+};
+
+export default function Layout({children}) {
     const [cookies] = useCookies(['access_token']); // Get the 'access_token' cookie
 
     const [user, setUser] = useState(null);
@@ -68,25 +96,6 @@ export default function Layout({ children }) {
     //
     // const isAdmin = user && user.roles && user.roles.includes('admin');
 
-    if (isAdmin) {
-        return (
+    return <LayoutSelector isAdmin={isAdmin} user={user}>{children}</LayoutSelector>;
 
-            <AdminLayout>
-
-                        {children}
-            </AdminLayout>
-    );
-    }
-
-    return user ? (
-        <MemberLayout>
-
-            { children }
-        </MemberLayout>
-    ) : (
-        <GuestLayout>
-
-            { children }
-        </GuestLayout>
-    );
 }
