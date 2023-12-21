@@ -18,12 +18,23 @@ const EditModal = ({ isOpen, handleClose }) => {
                 // Handle error
             }
         } else if (url === '/') {
-            // Logic for handling the root route
-            // For example, displaying some default content or redirecting to a different page
+            try {
+                // Redirect to the edit airport page passing the airportId as a parameter
+                window.location.href = `/edit-flight/${itemId}`;
+            } catch (error) {
+                console.error('Error editing flight:', error);
+                // Handle error
+            }
         } else if (url === '/tickets') {
-            // Logic for handling the /tickets route
-            // For example, fetching ticket data or displaying ticket-related content
+            try {
+                // Redirect to the edit airport page passing the airportId as a parameter
+                window.location.href = `/edit-ticket/${itemId}`;
+            } catch (error) {
+                console.error('Error editing ticket:', error);
+                // Handle error
+            }
         } else {
+            console.error('Logic for editing this item is not implemented');
             // Handle other routes or use a default logic
         }
 

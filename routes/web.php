@@ -73,3 +73,23 @@ require __DIR__ . '/auth.php';
 Route::get('/edit-airport/{item_id}', function ($item_id) {
     return Inertia::render('Airports/Edit', ['item_id' => $item_id]);
 })->name('edit.airport');
+
+Route::get('/edit-ticket/{ticket_id}', function ($ticket_id) {
+    return Inertia::render('Tickets/Edit', ['ticket_id' => $ticket_id]);
+})->name('edit.ticket');
+
+Route::get('/edit-flight/{flight_id}', function ($flight_id) {
+    return Inertia::render('Flights/Edit', ['flight_id' => $flight_id]);
+})->name('edit.flight');
+
+Route::get('/add-ticket', function () {
+    return Inertia::render('Tickets/Add');
+})->name('add.ticket');
+
+Route::get('/add-flight', function () {
+    return Inertia::render('Flights/Add');
+})->name('add.flight');
+
+Route::get('/add-airport', function () {
+    return Inertia::render('Airports/Add');
+})->name('add.airport');
