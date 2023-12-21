@@ -3,15 +3,61 @@ import {Link} from '@inertiajs/react';
 import GuestMenu from '../Components/GuestMenu.jsx'; // Import the GuestMenu component
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
-import { useLocation } from 'react-router-dom';
+import AddModal from '../Components/AddModal.jsx';
+import EditModal from '../Components/EditModal.jsx';
+import DeleteModal from '../Components/DeleteModal.jsx';
+
+import {useEffect, useState} from "react";
 
 
 
 export default function AdminLayout({children}) {
 
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+    const handleAddModal = () => {
+        setIsAddModalOpen(true);
+    };
+
+    const handleEditModal = () => {
+        setIsEditModalOpen(true);
+    };
+
+    const handleDeleteModal = () => {
+        setIsDeleteModalOpen(true);
+    };
+
+    const handleCloseAddModal = () => {
+        setIsAddModalOpen(false);
+    };
+
+    const handleCloseEditModal = () => {
+        setIsEditModalOpen(false);
+    };
+
+    const handleCloseDeleteModal = () => {
+        setIsDeleteModalOpen(false);
+    };
+
+
+
+
+
+    const url = window.location.pathname;
+
+    // const handleAdd = async () => {
+    //     try {
+    //
+    //
+    //     } catch (error) {
+    //         console.error('Add failed:', error);
+    //     }
+    // };
+
 
     const [cookies] = useCookies(['access_token']); // Get the 'access_token' cookie
-    const location = useLocation(); // Get the current location using React Router's useLocation hook
 
     const handleLogout = async () => {
         try {
@@ -44,7 +90,22 @@ export default function AdminLayout({children}) {
         }
     };
 
-
+    // useEffect(() => {
+    //     const appendColumnToRows = () => {
+    //         const rows = document.querySelectorAll('.list tbody tr');
+    //
+    //         rows.forEach((row) => {
+    //             const newCell = document.createElement('td');
+    //             newCell.textContent = 'New Column Data';
+    //
+    //             row.appendChild(newCell);
+    //         });
+    //     };
+    //
+    //     if (tableRendered) {
+    //         appendColumnToRows();
+    //     }
+    // }, [tableRendered]);
 
     return (
         // <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">
@@ -76,7 +137,14 @@ export default function AdminLayout({children}) {
                     style={{backgroundColor: "#66D4BA"}}>
                     <div className="max-w-7xl mx-auto p-6 lg:p-8">
                         <div className="p-4 sm:p-8 bg-gray-200 mx-auto shadow sm:rounded-lg custom-margins text-center">
-                            <button className="addButton">Add</button>
+                            <button className="adminButton" onClick={handleAddModal}>Add</button>
+                            <button className="adminButton" onClick={handleEditModal}>Edit</button>
+                            <button className="adminButton" onClick={handleDeleteModal}>Delete</button>
+
+                            {/* Modals */}
+                            <AddModal isOpen={isAddModalOpen} handleClose={handleCloseAddModal}/>
+                            <EditModal isOpen={isEditModalOpen} handleClose={handleCloseEditModal}/>
+                            <DeleteModal isOpen={isDeleteModalOpen} handleClose={handleCloseDeleteModal}/>
                         </div>
 
                         {/*<div className="w-full max-w-4xl mx-auto bg-white shadow-md sm:rounded-lg">*/}
@@ -88,4 +156,5 @@ export default function AdminLayout({children}) {
 
         </div>
     );
+
 }

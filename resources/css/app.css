@@ -21,18 +21,73 @@ h1{
 }
 /* Apply the font to all elements */
 * {
-    font-family: 'Yantramanav';
+    font-family: 'Yantramanav', sans-serif;
 }
-.addButton {
+.adminButton {
     /* Add the styles from the div */
     background-color: #66d4ba;
     border: none;
     border-radius: 0.375rem;
     color: #fff;
     padding: 0.5rem 1rem;
+    margin: 0.5rem 1rem;
     transition: color 0.3s ease; /* Adding transition for smooth color change */
 }
 
-.addButton:hover {
+.adminButton:hover {
     color: #edf2f7; /* Change text color to gray on hover */
+}
+.react-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+
+    text-align: center;
+}
+.react-modal h2 {
+    font-size: 24px;
+    color: white;
+    background-color: #66d4ba;
+    border-radius: 8px 8px 0 0;  /* Adds rounded corners */
+    padding: 20px; /* Adds padding inside the element */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+    text-align: center;
+}
+.react-modal p {
+    font-size: 18px;
+    margin-bottom: 24px;
+}
+
+.react-modal button {
+    background-color: #66d4ba;
+    border: none;
+    border-radius: 0.375rem;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+
+.react-modal button:hover {
+    color: #edf2f7;
+}
+.react-modal input {
+    border: 1px solid #66d4ba; /* Set border to have color #66d4ba */
+    /* Add any other desired styling for the input */
+}
+.react-modal input:focus {
+    /* Your styles for the input when it gains focus */
+
+    border-color: #66d4ba;
+    border-width: 5px;
+    /* Add other desired styles */
 }

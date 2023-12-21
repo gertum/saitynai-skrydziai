@@ -10,6 +10,6 @@ class FlightControllerUnused extends Controller
 {
     public function index()
     {
-        return Inertia::render('Flights_unused/List');
+        return Inertia::render('Flights/List');
     }
 }

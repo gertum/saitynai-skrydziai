@@ -41,6 +41,20 @@ export default function Welcome({auth}) {
         fetchFlights();
     }, []);
 
+    // useEffect(() => {
+    //     const appendColumnToRows = () => {
+    //         const rows = document.querySelectorAll('.list tbody tr'); // Target specific table rows within the "list" class
+    //
+    //         rows.forEach((row) => {
+    //             const newCell = document.createElement('td');
+    //             newCell.textContent = 'New Column Data'; // Replace with your desired content
+    //
+    //             row.appendChild(newCell);
+    //         });
+    //     };
+    //
+    //     appendColumnToRows();
+    // }, []);
     // //TODO
     // const handleAddTicketClick = async (flightId) => {
     //     //simple add
@@ -78,7 +92,7 @@ export default function Welcome({auth}) {
                         ) : errorFlights ? (
                             <p>Error fetching flights: {errorFlights}</p>
                         ) : (
-                            <table>
+                            <table className="list">
                                 <thead>
                                 <tr>
                                     <th>Flight ID</th>
@@ -113,6 +127,7 @@ export default function Welcome({auth}) {
                                         {/*        Add ticket to cart*/}
                                         {/*    </a>*/}
                                         {/*</td>*/}
+
                                     </tr>
                                 ))}
                                 </tbody>

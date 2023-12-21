@@ -52,7 +52,7 @@ Route::get('/dashboard', function () {
 //    Route::get('/flights', [FlightControllerUnused::class, 'index'])->name('flights.index');
 
 //    Route::get('/flights', function () {
-//        return Inertia::render('Flights_unused/List');
+//        return Inertia::render('Flights/List');
 //    });
 
     Route::get('/cart', [CartWebController::class, 'index'])->name('cart');
@@ -66,3 +66,10 @@ require __DIR__ . '/auth.php';
 //Route::get('/test-me', function () {
 //    return Inertia::render('Auth/TestMe');
 //})->name('test.me');
+
+//Route::get('/edit-airport/{item_id}', function () {
+//    return Inertia::render('Airports/Edit');
+//})->name('edit.airport');
+Route::get('/edit-airport/{item_id}', function ($item_id) {
+    return Inertia::render('Airports/Edit', ['item_id' => $item_id]);
+})->name('edit.airport');
